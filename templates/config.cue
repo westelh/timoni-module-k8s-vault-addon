@@ -44,6 +44,9 @@ import (
 
 	objects: {
 		clusterole: #ClusterRole & {#config: config}
-		binding: #ClusterRoleBinding & {#config: config}
+		binding: #ClusterRoleBinding & {
+			#config: config
+			#clusterRole: clusterole
+		}
 	}
 }

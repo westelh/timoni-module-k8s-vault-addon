@@ -8,9 +8,10 @@ import (
 	kind:       "ClusterRoleBinding"
 	apiVersion: "rbac.authorization.k8s.io/v1"
 	#config: #Config
+	#clusterRole: #ClusterRole
 
 	metadata: {
-		name: "k8s-vault-addon-\(#config.metadata.name)"
+		name: #clusterRole.metadata.name
 		labels:    #config.metadata.labels
 		if #config.metadata.annotations != _|_ {
 			annotations: #config.metadata.annotations
@@ -19,7 +20,7 @@ import (
 	roleRef: {
 		apiGroup: "rbac.authorization.k8s.io"
 		kind: "ClusterRole"
-		name: #config.metadata.name
+		name: #clusterRole.metadata.name
 	}
 	subjects: [{
 		kind: "ServiceAccount"
